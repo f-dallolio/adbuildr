@@ -14,3 +14,13 @@ BugReports: https://github.com/f-dallolio/adbuildr/issues
 Depends: 
     R (>= 2.10)
 RoxygenNote: 7.3.1
+Imports: 
+    dplyr,
+    fs,
+    methods,
+    purrr,
+    rlang,
+    snakecase,
+    stringr,
+    tidyr,
+    vctrs
