@@ -1,5 +1,5 @@
-# library(fs)
-# library(tidyverse)
+# # library(fs)
+# # library(tidyverse)
 #
 #
 # x <- dir_ls("/mnt/sata_data_1/adintel/") |>
@@ -24,7 +24,7 @@
 #            str_remove_all("spot_")) |>
 #   select(-path, -year) |>
 #   distinct() |>
-# left_join(media_2, by = "media_class") |>
+#   left_join(media_2, by = "media_class") |>
 #   relocate(media_type_id, media_type , .before = media_class)
 #
 #
@@ -33,3 +33,5 @@
 #
 # adintel_tbl_class_ptype |>
 #   save(file = "data/adintel_tbl_class_ptype.rda")
+#
+# usethis::use_data(adintel_tbl_class_ptype, overwrite = TRUE)
