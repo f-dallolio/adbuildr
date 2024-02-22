@@ -31,7 +31,7 @@ remove_old_static <- function(x, .id = "tbl_class"){
 
 path_split2 <- function(x, ext_remove = FALSE){
   if(ext_remove) {
-    x <- fspath_ext_remove(x)
+    x <- fs::path_ext_remove(x)
   }
   out <- fs::path_split(x)
   if ( purrr::is_scalar_atomic(x) ) {
@@ -85,7 +85,7 @@ wrangle_path <- function(x, df_out = FALSE){
     stringr::str_replace_all("network_tv", "national_tv") |>
     stringr::str_replace_all("spot_tv", "local_tv")
 
-  if ( !purrr::is_old_static(xx) ){
+  if ( !is_old_static(xx) ){
     xx$tbl <- with(xx, make_tbl_column(tbl_type, tbl_class))
     file_type <- xx$tbl |> stringr::str_split_i("_", 1)
   } else {

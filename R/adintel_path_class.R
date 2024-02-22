@@ -30,7 +30,7 @@ methods::setOldClass(c("adbuildr_ad_path", "vctrs_vctr"))
 #' @export
 ad_path <- function(x = character(), ...){
 
-  x <- vec_cast(x, character())
+  x <- vctrs::vec_cast(x, character())
   x <- fs::fs_path(x)
 
   if ( purrr::is_scalar_character(x) ) {
@@ -39,10 +39,11 @@ ad_path <- function(x = character(), ...){
 
   possibly_wrangle <- purrr::possibly(wrangle_path, otherwise = list(NULL))
 
-  out0 <- lapply(x, possibly_wrangle,
+  out0 <- lapply(x, wrangle_path,
                  df_out = TRUE) |>
-    remove_old_static() |>
-    purrr::list_rbind()
+    purrr::list_rbind() |>
+    filter(file_type )
+
 
   out <- df_list(out0)
 
