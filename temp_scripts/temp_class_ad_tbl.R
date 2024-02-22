@@ -16,7 +16,6 @@ str_rpad <- function(x, n = 2, max = T){
   } else{
     str_pad(x, width = nchar(x) + n, side = "right", pad = " ")
   }
-
 }
 str_lpad <- function(x, n = 2, max = T){
   if(max){
@@ -24,7 +23,6 @@ str_lpad <- function(x, n = 2, max = T){
   } else {
     str_pad(x, width = nchar(x) + n, side = "left", pad = " ")
   }
-
 }
 
 x <- dir_ls("/mnt/sata_data_1/adintel/") |>
