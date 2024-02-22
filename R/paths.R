@@ -18,20 +18,20 @@ is_old_static <- function(x, .id = "tbl_class"){
 }
 
 keep_dyn_tbl <- function(x, .id = "year"){
-  keep(x, ~ is_dyn_table(.x, .id))
+  purrr::keep(x, ~ is_dyn_table(.x, .id))
 }
 keep_static_tbl <- function(x, .id = "tbl_class"){
-  keep(x, ~ is_static_tbl(.x, .id))
+  purr::keep(x, ~ is_static_tbl(.x, .id))
 }
 remove_old_static <- function(x, .id = "tbl_class"){
-  discard(x, ~ is_old_static(.x, .id))
+  purr::discard(x, ~ is_old_static(.x, .id))
 }
 
 
 
 path_split2 <- function(x, ext_remove = FALSE){
   if(ext_remove) {
-    x <- path_ext_remove(x)
+    x <- fspath_ext_remove(x)
   }
   out <- fs::path_split(x)
   if ( purrr::is_scalar_atomic(x) ) {
@@ -72,7 +72,7 @@ make_tbl_column <- function(x,  y ){
 wrangle_path <- function(x, df_out = FALSE){
 
   stopifnot("x must be a single string indicating a file path" =
-              is_scalar_character(x) && fs::is_file(fs::fs_path(x)))
+              purrr::is_scalar_character(x) && fs::is_file(fs::fs_path(x)))
 
   xx <- x |> path_split2_noext() |>
     get_element( -seq_len(3) ) |>
@@ -85,9 +85,9 @@ wrangle_path <- function(x, df_out = FALSE){
     stringr::str_replace_all("network_tv", "national_tv") |>
     stringr::str_replace_all("spot_tv", "local_tv")
 
-  if ( !is_old_static(xx) ){
+  if ( !purrr::is_old_static(xx) ){
     xx$tbl <- with(xx, make_tbl_column(tbl_type, tbl_class))
-    file_type <- xx$tbl |> str_split_i("_", 1)
+    file_type <- xx$tbl |> stringr::str_split_i("_", 1)
   } else {
     xx$tbl <- NA
     file_type <- "-"
