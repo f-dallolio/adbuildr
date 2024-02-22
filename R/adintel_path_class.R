@@ -41,8 +41,8 @@ ad_path <- function(x = character(), ...){
 
   out0 <- lapply(x, wrangle_path,
                  df_out = TRUE) |>
-    purrr::list_rbind() |>
-    filter(file_type )
+    purrr::list_rbind() |>print(n=Inf)
+    dplyr::filter(!is.na(tbl))
 
 
   out <- df_list(out0)
