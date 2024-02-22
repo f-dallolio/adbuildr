@@ -8,13 +8,13 @@ get_element <- function(x, id){
 }
 
 is_dyn_table <- function(x, .id = "year"){
-  is_numeric_chr(x[.id])
+  fdusr::is_numeric_chr(x[.id])
 }
 is_static_tbl <- function(x, .id = "year"){
-  !is_numeric_chr(x[.id])
+  !fdusr::is_numeric_chr(x[.id])
 }
 is_old_static <- function(x, .id = "tbl_class"){
-  is_numeric_chr(x[.id])
+  fdusr::is_numeric_chr(x[.id])
 }
 
 keep_dyn_tbl <- function(x, .id = "year"){
@@ -76,7 +76,7 @@ wrangle_path <- function(x, df_out = FALSE){
 
   xx <- x |> path_split2_noext() |>
     get_element( -seq_len(3) ) |>
-    set_names(c('year', 'tbl_class', 'tbl_type')) |>
+    rlang::set_names(c('year', 'tbl_class', 'tbl_type')) |>
     snakecase::to_snake_case() |>
     as.list()
 

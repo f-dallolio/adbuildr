@@ -2,7 +2,7 @@
 #'
 #' @import vctrs
 #' @keywords internal
-#' @name class_adbuildr_ad_path
+#' @name class_adintel_path
 NULL
 
 
@@ -13,20 +13,20 @@ new_ad_path <- function(path, file_type, year,
   new_rcrd( fields = list(path = path, file_type = file_type,
                           year = year, tbl_class = tbl_class, tbl = tbl),
             common_path = common_path,
-            class = "adbuildr_ad_path" )
+            class = "adintel_path" )
 }
 
 # for compatibility with the S4 system
-methods::setOldClass(c("adbuildr_ad_path", "vctrs_vctr"))
+methods::setOldClass(c("adintel_path", "vctrs_vctr"))
 
-#' `adbuildr_ad_path` vector
+#' `adintel_path` vector
 #'
 #' This creates a vector of paths for the adbuildr_ad dataset.
 #'
 #' @param x
-#'  * For `adbuildr_ad_path()`: A character vector of file paths or a sinbgle string indicating a directory.#'.
-#'  * For `is_adbuildr_ad_path()`: An object to test.
-#' @return An S3 vector of class `adbuildr_ad_path`.
+#'  * For `adintel_path()`: A character vector of file paths or a sinbgle string indicating a directory.#'.
+#'  * For `is_adintel_path()`: An object to test.
+#' @return An S3 vector of class `adintel_path`.
 #' @export
 ad_path <- function(x = character(), ...){
 
@@ -41,7 +41,7 @@ ad_path <- function(x = character(), ...){
 
   out0 <- lapply(x, wrangle_path,
                  df_out = TRUE) |>
-    purrr::list_rbind() |>print(n=Inf)
+    purrr::list_rbind() |>
     dplyr::filter(!is.na(tbl))
 
 
@@ -49,7 +49,7 @@ ad_path <- function(x = character(), ...){
 
   cmn <- fs::path_common(out$path)
 
-  new_adbuildr_ad_path(path = out$path,
+  new_ad_path(path = out$path,
                    file_type = out$file_type,
                    year = out$year,
                    tbl_class = out$tbl_class,
@@ -59,18 +59,18 @@ ad_path <- function(x = character(), ...){
 }
 #'
 #' @export
-#' @rdname class_adbuildr_ad_path
-is_adbuildr_ad_path <- function(x) {
-  inherits(x, "adbuildr_ad_path")
+#' @rdname class_adintel_path
+is_adintel_path <- function(x) {
+  inherits(x, "adintel_path")
 }
 #'
 #' @export
-#' @rdname class_adbuildr_ad_path
-format.adbuildr_ad_path <- function(x, ...) {
+#' @rdname class_adintel_path
+format.adintel_path <- function(x, ...) {
   out <- field(x, "path")  |>
     purrr::map_chr( ~ path_split2(.x) |>
                      get_element(-seq_len(3)) |>
-                     path_join() )
+                     fs::path_join() )
 
   type <- field(x, "file_type")
 
@@ -78,24 +78,31 @@ format.adbuildr_ad_path <- function(x, ...) {
 }
 #'
 #' @export
-#' @rdname class_adbuildr_ad_path
-obj_print_footer.adbuildr_ad_path <- function(x, ...) {
+#' @rdname class_adintel_path
+obj_print_footer.adintel_path <- function(x, ...) {
   cat("# ", paste0(attr(x, "common_path"), "/..."), "\n",  sep = "")
 }
 #'
 #' @export
-#' @rdname class_adbuildr_ad_path
-vec_ptype_abbr.adbuildr_ad_path <- function(x, ...) "ad_path"
-vec_ptype_full.adbuildr_ad_path <- function(x, ...) "ad_path"
+#' @rdname class_adintel_path
+vec_ptype_abbr.adintel_path <- function(x, ...) "ad_path"
+#' @export
+#' @rdname class_adintel_path
+vec_ptype_full.adintel_path <- function(x, ...) "adintel_path"
 
 #' @export
-vec_ptype2.adbuildr_ad_path.adbuildr_ad_path <- function(x, y, ...) ad_path()
+#' @rdname class_adintel_path
+vec_ptype2.adintel_path.adintel_path <- function(x, y, ...) ad_path()
 #' @export
+#' @rdname class_adintel_path
 vec_ptype2.character.vctrs_percent <- function(x, y, ...) character()
 
 #' @export
-vec_cast.adbuildr_ad_path.adbuildr_ad_path <- function(x, to, ...) x
+#' @rdname class_adintel_path
+vec_cast.adintel_path.adintel_path <- function(x, to, ...) x
 #' @export
-vec_cast.adbuildr_ad_path.character <- function(x, to, ...) ad_path(x)
+#' @rdname class_adintel_path
+vec_cast.adintel_path.character <- function(x, to, ...) ad_path(x)
 #' @export
-vec_cast.character.adbuildr_ad_path <- function(x, to, ...) field(x, "path")
+#' @rdname class_adintel_path
+vec_cast.character.adintel_path <- function(x, to, ...) field(x, "path")

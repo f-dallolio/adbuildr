@@ -2,16 +2,16 @@
 % Please edit documentation in R/adintel_path_class.R
 \name{ad_path}
 \alias{ad_path}
-\title{`adbuildr_ad_path` vector}
+\title{`adintel_path` vector}
 \usage{
 ad_path(x = character(), ...)
 }
 \arguments{
-\item{x}{* For `adbuildr_ad_path()`: A character vector of file paths or a sinbgle string indicating a directory.#'.
-* For `is_adbuildr_ad_path()`: An object to test.}
+\item{x}{* For `adintel_path()`: A character vector of file paths or a sinbgle string indicating a directory.#'.
+* For `is_adintel_path()`: An object to test.}
 }
 \value{
-An S3 vector of class `adbuildr_ad_path`.
+An S3 vector of class `adintel_path`.
 }
 \description{
 This creates a vector of paths for the adbuildr_ad dataset.
