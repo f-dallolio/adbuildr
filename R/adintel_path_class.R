@@ -6,11 +6,12 @@
 NULL
 
 new_ad_path <- function(path, file_type, year,
-                             tbl_class, tbl_type, tbl,
-                             common_path){
+                        tbl_class, tbl_type, tbl,
+                        common_path){
 
   new_rcrd( fields = list(path = path, file_type = file_type,
-                          year = year, tbl_class = tbl_class, tbl = tbl),
+                          year = year, tbl_class = tbl_class,
+                          tbl_type = tbl_type, tbl = tbl),
             common_path = common_path,
             class = "adintel_path" )
 }

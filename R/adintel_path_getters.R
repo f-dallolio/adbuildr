@@ -52,36 +52,42 @@ get_ref_paths <- function(x){
 #' @export
 #' @rdname adintel_path_getters
 get_path <- function(x){
-  assertthat::assert_that(is_adintel_path(""))
+  assertthat::assert_that(is_adintel_path(x))
   field(x, "path")
 }
 #' @export
 #' @rdname adintel_path_getters
 get_file_type <- function(x){
-  assertthat::assert_that(is_adintel_path(""))
+  assertthat::assert_that(is_adintel_path(x))
   field(x, "file_type")
 }
 #' @export
 #' @rdname adintel_path_getters
 get_year <- function(x){
-  assertthat::assert_that(is_adintel_path(""))
+  assertthat::assert_that(is_adintel_path(x))
   field(x, "year")
 }
 #' @export
 #' @rdname adintel_path_getters
 get_tbl_class <- function(x){
-  assertthat::assert_that(is_adintel_path(""))
+  assertthat::assert_that(is_adintel_path(x))
   field(x, "tbl_class")
 }
 #' @export
 #' @rdname adintel_path_getters
+get_tbl_type <- function(x){
+  assertthat::assert_that(is_adintel_path(x))
+  field(x, "tbl_type")
+}
+#' @export
+#' @rdname adintel_path_getters
 get_tbl <- function(x){
-  assertthat::assert_that(is_adintel_path(""))
+  assertthat::assert_that(is_adintel_path(x))
   field(x, "tbl")
 }
 #' @export
 #' @rdname adintel_path_getters
 common_path <- function(x){
-  assertthat::assert_that(is_adintel_path(""))
+  assertthat::assert_that(is_adintel_path(x))
   attr(x, "common_path")
 }

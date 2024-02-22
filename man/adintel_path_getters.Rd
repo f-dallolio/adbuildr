@@ -12,6 +12,7 @@
 \alias{get_file_type}
 \alias{get_year}
 \alias{get_tbl_class}
+\alias{get_tbl_type}
 \alias{get_tbl}
 \alias{common_path}
 \title{Adintel Paths Getters}
@@ -35,6 +36,8 @@ get_file_type(x)
 get_year(x)
 
 get_tbl_class(x)
+
+get_tbl_type(x)
 
 get_tbl(x)
 
