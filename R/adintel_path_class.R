@@ -5,7 +5,6 @@
 #' @name class_adintel_path
 NULL
 
-
 new_ad_path <- function(path, file_type, year,
                              tbl_class, tbl_type, tbl,
                              common_path){
