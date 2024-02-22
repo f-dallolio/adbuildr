@@ -16,6 +16,7 @@ Depends:
 RoxygenNote: 7.3.1
 Imports: 
     dplyr,
+    fdusr,
     fs,
     methods,
     purrr,
