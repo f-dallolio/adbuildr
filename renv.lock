@@ -19,6 +19,16 @@
       ],
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
+    "assertthat": {
+      "Package": "assertthat",
+      "Version": "0.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "tools"
+      ],
+      "Hash": "50c838a310445e954bc13f26f26a6ecf"
+    },
     "cli": {
       "Package": "cli",
       "Version": "3.6.2",
@@ -74,6 +84,22 @@
         "utils"
       ],
       "Hash": "962174cf2aeb5b9eea581522286a911f"
+    },
+    "fdusr": {
+      "Package": "fdusr",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "fdusr",
+      "RemoteUsername": "f-dallolio",
+      "RemotePkgRef": "f-dallolio/fdusr",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "721c45abf05df6636b5f7efa163f745a2c297897",
+      "Requirements": [
+        "rlang"
+      ],
+      "Hash": "bc4be247a5d90fadad2d82cbc187f03a"
     },
     "fs": {
       "Package": "fs",
