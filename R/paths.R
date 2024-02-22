@@ -21,10 +21,10 @@ keep_dyn_tbl <- function(x, .id = "year"){
   purrr::keep(x, ~ is_dyn_table(.x, .id))
 }
 keep_static_tbl <- function(x, .id = "tbl_class"){
-  purr::keep(x, ~ is_static_tbl(.x, .id))
+  purrr::keep(x, ~ is_static_tbl(.x, .id))
 }
 remove_old_static <- function(x, .id = "tbl_class"){
-  purr::discard(x, ~ is_old_static(.x, .id))
+  purrr::discard(x, ~ is_old_static(.x, .id))
 }
 
 
