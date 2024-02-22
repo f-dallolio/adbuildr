@@ -101,7 +101,7 @@ wrangle_path <- function(x, df_out = FALSE){
 
   out <- c(path = x, file_type = file_type, xx)
   if (df_out) {
-    return(tibble::as_tibble(out))
+    return(as.data.frame(out))
   }
 
   out

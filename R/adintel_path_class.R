@@ -28,7 +28,7 @@ methods::setOldClass(c("adintel_path", "vctrs_vctr"))
 #'  * For `is_adintel_path()`: An object to test.
 #' @return An S3 vector of class `adintel_path`.
 #' @export
-ad_path <- function(x = character(), ...){
+ad_path <- function(x){
 
   x <- vctrs::vec_cast(x, character())
   x <- fs::fs_path(x)
@@ -40,9 +40,9 @@ ad_path <- function(x = character(), ...){
   possibly_wrangle <- purrr::possibly(wrangle_path, otherwise = list(NULL))
 
   out0 <- lapply(x, wrangle_path,
-                 df_out = TRUE) |>
-    purrr::list_rbind() |>
-    dplyr::filter(!is.na(tbl))
+                 df_out = TRUE)
+  out0 <- do.call("rbind", out0) |>
+    subset(!is.na(tbl))
 
 
   out <- df_list(out0)
@@ -92,7 +92,10 @@ vec_ptype_full.adintel_path <- function(x, ...) "adintel_path"
 
 #' @export
 #' @rdname class_adintel_path
-vec_ptype2.adintel_path.adintel_path <- function(x, y, ...) ad_path()
+vec_ptype2.adintel_path.adintel_path <- function(x, y, ...) {
+  vec_data(x)$path |> c(vec_data(y)$path) |> ad_path()
+}
+
 #' @export
 #' @rdname class_adintel_path
 vec_ptype2.character.vctrs_percent <- function(x, y, ...) character()
@@ -106,3 +109,4 @@ vec_cast.adintel_path.character <- function(x, to, ...) ad_path(x)
 #' @export
 #' @rdname class_adintel_path
 vec_cast.character.adintel_path <- function(x, to, ...) field(x, "path")
+

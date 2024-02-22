@@ -4,7 +4,7 @@
 \alias{ad_path}
 \title{`adintel_path` vector}
 \usage{
-ad_path(x = character(), ...)
+ad_path(x)
 }
 \arguments{
 \item{x}{* For `adintel_path()`: A character vector of file paths or a sinbgle string indicating a directory.#'.
