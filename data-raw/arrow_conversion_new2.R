@@ -26,6 +26,27 @@ x <- list(
   enframe() |>
   rename(col_class = name)
 
+arrow_base <- x |>
+  pull(2) |>
+  set_names(pull(x, 1)) |>
+  map(possibly(compose(
+    as.list,schema, as_arrow_table, as.data.frame, unlist))) |>
+  map(~ pluck(.x, 1,'type') |> class() |> pluck(1) |> tolower() |> str_remove_all("type"))
+
+
+xx
+|>
+  enframe()
+
+xx
+pluck(xx, 1,1, 'type')
+
+
+
+base_datatypes <- x |> mutate(value = value |> map_chr(~ .x |> typeof())) |>
+  rename(base_type = value)
+save(base_datatypes, file = "data-raw/base_datatypes.rda")
+
 x2 <- arrow_conversion_new |>
   mutate(cll_nm = unlist(a),
          cll_arg_type = args,

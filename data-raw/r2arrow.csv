@@ -1,0 +1,16 @@
+﻿R,Arrow
+logical,boolean
+integer,int32
+double,float64
+numeric,float64
+character,utf8
+factor,dictionary
+raw,uint8
+Date,date32
+POSIXct,timestamp
+POSIXlt,struct
+data.frame,struct
+list,list
+bit64::integer64,int64
+hms::hms,time32
+difftime,duration
