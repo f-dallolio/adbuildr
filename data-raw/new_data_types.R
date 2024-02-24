@@ -146,7 +146,8 @@ new_int16 <- function (x = integer(), ...) {
     x <- as.integer(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::int16(), class = c(class(x),
+       arrow = arrow::int16(),
+       class = c(class(x),
         "ad_int16"))
 }
 #' @export
@@ -161,7 +162,8 @@ new_int32 <- function (x = integer(), ...) {
     x <- as.integer(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::int32(), class = c(class(x),
+       arrow = arrow::int32(),
+       class = c(class(x),
         "ad_int32"))
 }
 #' @export
@@ -176,7 +178,8 @@ new_int64 <- function (x = double(), ...) {
     x <- bit64::as.integer64(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::int64(), class = c(class(x),
+       arrow = arrow::int64(),
+       class = c(class(x),
         "ad_int64"))
 }
 #' @export
@@ -206,7 +209,8 @@ new_large_utf8 <- function (x = character(), ...) {
     x <- as.character(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::large_utf8(), class = c(class(x),
+       arrow = arrow::large_utf8(),
+       class = c(class(x),
         "ad_large_utf8"))
 }
 #' @export
@@ -221,7 +225,7 @@ new_string <- function (x = character()) {
     x <- as.character(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::string(x = , encoding = NULL),
+       arrow = arrow::string(),
         class = c(class(x), "ad_string"))
 }
 #' @export
@@ -236,7 +240,8 @@ new_uint16 <- function (x = integer(), ...) {
     x <- as.integer(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::uint16(), class = c(class(x),
+       arrow = arrow::uint16(),
+       class = c(class(x),
         "ad_uint16"))
 }
 #' @export
@@ -251,7 +256,8 @@ new_uint32 <- function (x = integer(), ...) {
     x <- as.integer(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::uint32(), class = c(class(x),
+       arrow = arrow::uint32(),
+       class = c(class(x),
         "ad_uint32"))
 }
 #' @export
@@ -266,8 +272,8 @@ new_uint64 <- function (x = integer(), ...) {
     x <- as.integer(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::uint64(), class = c(class(x),
-        "ad_uint64"))
+       arrow = arrow::uint64(),
+       class = c(class(x), "ad_uint64"))
 }
 #' @export
 #' @rdname ad_type
@@ -281,8 +287,8 @@ new_uint8 <- function (x = integer(), ...) {
     x <- as.integer(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::uint8(), class = c(class(x),
-        "ad_uint8"))
+       arrow = arrow::uint8(),
+       class = c(class(x), "ad_uint8"))
 }
 #' @export
 #' @rdname ad_type
@@ -307,14 +313,15 @@ as_utf8 <- new_utf8
 ## (21) new_dictionary -----
 #' @export
 #' @rdname ad_type
-new_dictionary <- function (x = integer(), index_type = int32(), value_type = utf8(),     ordered = FALSE)
-{
+new_dictionary <- function (
+        x = integer(),
+        index_type = integer(), value_type = character(),
+        ordered = FALSE){
     x <- as_factor(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::dictionary(index_type = int32(),
-        value_type = utf8(), ordered = FALSE), class = c(class(x),
-        "ad_dictionary"))
+       arrow = arrow::dictionary(index_type, value_type, ordered),
+       class = c(class(x), "ad_dictionary"))
 }
 #' @export
 #' @rdname ad_type
@@ -324,12 +331,12 @@ as_dictionary <- new_dictionary
 ## (22) new_decimal -----
 #' @export
 #' @rdname ad_type
-new_decimal <- function (x = double(), precision, scale) {
+new_decimal <- function (x = double(), precision = 1, scale = 0) {
     x <- as.double(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::decimal(precision = ,
-        scale = ), class = c(class(x), "ad_decimal"))
+       arrow = arrow::decimal(precision, scale),
+       class = c(class(x), "ad_decimal"))
 }
 #' @export
 #' @rdname ad_type
@@ -339,12 +346,12 @@ as_decimal <- new_decimal
 ## (23) new_decimal128 -----
 #' @export
 #' @rdname ad_type
-new_decimal128 <- function (x = double(), precision, scale) {
+new_decimal128 <- function (x = double(), precision = 1, scale = 0) {
     x <- as.double(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::decimal128(precision = ,
-        scale = ), class = c(class(x), "ad_decimal128"))
+       arrow = arrow::decimal128(precision, scale),
+       class = c(class(x), "ad_decimal128"))
 }
 #' @export
 #' @rdname ad_type
@@ -354,12 +361,12 @@ as_decimal128 <- new_decimal128
 ## (24) new_decimal256 -----
 #' @export
 #' @rdname ad_type
-new_decimal256 <- function (x = double(), precision, scale) {
+new_decimal256 <- function (x = double(), precision = 1, scale = 0) {
     x <- as.double(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::decimal256(precision = ,
-        scale = ), class = c(class(x), "ad_decimal256"))
+       arrow = arrow::decimal256(precision = precision, scale = scale),
+       class = c(class(x), "ad_decimal256"))
 }
 #' @export
 #' @rdname ad_type
@@ -369,12 +376,12 @@ as_decimal256 <- new_decimal256
 ## (25) new_duration -----
 #' @export
 #' @rdname ad_type
-new_duration <- function (x = double(), unit = c("s", "ms", "us", "ns")) {
-    x <- as.difftime(x)
+new_duration <- function (x = double(), ...) {
+    x <- as.difftime(x, units = "secs")
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::duration(unit = c("s",
-        "ms", "us", "ns")), class = c(class(x), "ad_duration"))
+       arrow = arrow::duration(unit = "s"),
+       class = c(class(x), "ad_duration"))
 }
 #' @export
 #' @rdname ad_type
@@ -385,11 +392,11 @@ as_duration <- new_duration
 #' @export
 #' @rdname ad_type
 new_fixed_size_list_of <- function (x = list(), type, list_size) {
-    x <- as_list_of(x)
+    x <- vctrs::as_list_of(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::fixed_size_list_of(type = ,
-        list_size = ), class = c(class(x), "ad_fixed_size_list_of"))
+       arrow = arrow::fixed_size_list_of(type, list_size),
+       class = c(class(x), "ad_fixed_size_list_of"))
 }
 #' @export
 #' @rdname ad_type
@@ -400,10 +407,10 @@ as_fixed_size_list_of <- new_fixed_size_list_of
 #' @export
 #' @rdname ad_type
 new_large_list_of <- function (x = list(), type) {
-    x <- as_list_of(x)
+    x <- vctrs::as_list_of(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::large_list_of(type = ),
+       arrow = arrow::large_list_of(type),
         class = c(class(x), "ad_large_list_of"))
 }
 #' @export
@@ -414,11 +421,11 @@ as_large_list_of <- new_large_list_of
 ## (28) new_list_of -----
 #' @export
 #' @rdname ad_type
-new_list_of <- function (x = list(), ..., .ptype = NULL) {
-    x <- as_list_of(x)
+new_list_of <- function (x = list(), ) {
+    x <- vctrs::as_list_of(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::list_of(..., .ptype = NULL),
+       arrow = arrow::list_of(type),
         class = c(class(x), "ad_list_of"))
 }
 #' @export
@@ -429,12 +436,12 @@ as_list_of <- new_list_of
 ## (29) new_time32 -----
 #' @export
 #' @rdname ad_type
-new_time32 <- function (x = double(), unit = c("ms", "s")) {
+new_time32 <- function (x = double(), unit = "s") {
     x <- hms::as_hms(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::time32(unit = c("ms",
-        "s")), class = c(class(x), "ad_time32"))
+       arrow = arrow::time32(unit = unit),
+       class = c(class(x), "ad_time32"))
 }
 #' @export
 #' @rdname ad_type
@@ -448,8 +455,7 @@ new_time64 <- function (x = double(), unit = c("ns", "us")) {
     x <- hms::as_hms(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::time64(unit = c("ns",
-        "us")), class = c(class(x), "ad_time64"))
+       arrow = arrow::time64(unit = unit), class = c(class(x), "ad_time64"))
 }
 #' @export
 #' @rdname ad_type
@@ -459,13 +465,12 @@ as_time64 <- new_time64
 ## (31) new_timestamp -----
 #' @export
 #' @rdname ad_type
-new_timestamp <- function (x = double(), unit = c("s", "ms", "us", "ns"), timezone = "") {
+new_timestamp <- function (x = double(), unit = "s", timezone = "") {
     x <- as.POSIXct(x)
     vctrs::new_vctr(
        .data =  x,
-       arrow = arrow::timestamp(unit = c("s",
-        "ms", "us", "ns"), timezone = ""), class = c(class(x),
-        "ad_timestamp"))
+       arrow = arrow::timestamp(unit, timezone),
+       class = c(class(x),"ad_timestamp"))
 }
 #' @export
 #' @rdname ad_type
