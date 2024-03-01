@@ -17,6 +17,38 @@
 \alias{as_rint32}
 \alias{as_rint32.default}
 \alias{as_rint32.character}
+\alias{rfloat64}
+\alias{is_rfloat64}
+\alias{format.rfloat64}
+\alias{vec_ptype2.rfloat64.rfloat64}
+\alias{vec_ptype2.rfloat64.integer}
+\alias{vec_ptype2.integer.rfloat64}
+\alias{vec_ptype2.rfloat64.double}
+\alias{vec_ptype2.double.rfloat64}
+\alias{vec_cast.rfloat64.rfloat64}
+\alias{vec_cast.rfloat64.integer}
+\alias{vec_cast.integer.rfloat64}
+\alias{vec_cast.rfloat64.double}
+\alias{vec_cast.double.rfloat64}
+\alias{as_rfloat64}
+\alias{as_rfloat64.default}
+\alias{as_rfloat64.character}
+\alias{rutf8}
+\alias{is_rutf8}
+\alias{format.rutf8}
+\alias{vec_ptype2.rutf8.rutf8}
+\alias{vec_ptype2.rutf8.character}
+\alias{vec_ptype2.character.rutf8}
+\alias{vec_ptype2.rutf8.integer}
+\alias{vec_ptype2.integer.rutf8}
+\alias{vec_ptype2.rutf8.double}
+\alias{vec_ptype2.double.rutf8}
+\alias{vec_cast.rutf8.rutf8}
+\alias{vec_cast.rutf8.character}
+\alias{vec_cast.character.rutf8}
+\alias{vec_cast.rutf8.integer}
+\alias{vec_cast.integer.rutf8}
+\alias{vec_cast.rutf8.double}
 \title{Internal vctrs methods}
 \usage{
 rint32(x = numeric())
@@ -50,19 +82,99 @@ as_rint32(x, ...)
 \method{as_rint32}{default}(x, ...)
 
 \method{as_rint32}{character}(x)
+
+rfloat64(x = numeric())
+
+is_rfloat64(x)
+
+\method{format}{rfloat64}(x, ...)
+
+\method{vec_ptype2}{rfloat64.rfloat64}(x, y, ...)
+
+\method{vec_ptype2}{rfloat64.integer}(x, y, ...)
+
+\method{vec_ptype2}{integer.rfloat64}(x, y, ...)
+
+\method{vec_ptype2}{rfloat64.double}(x, y, ...)
+
+\method{vec_ptype2}{double.rfloat64}(x, y, ...)
+
+\method{vec_cast}{rfloat64.rfloat64}(x, to, ...)
+
+\method{vec_cast}{rfloat64.integer}(x, to, ...)
+
+\method{vec_cast}{integer.rfloat64}(x, to, ...)
+
+\method{vec_cast}{rfloat64.double}(x, to, ...)
+
+\method{vec_cast}{double.rfloat64}(x, to, ...)
+
+as_rfloat64(x, ...)
+
+\method{as_rfloat64}{default}(x, ...)
+
+\method{as_rfloat64}{character}(x)
+
+rutf8(x = character())
+
+is_rutf8(x)
+
+\method{format}{rutf8}(x, ...)
+
+\method{vec_ptype2}{rutf8.rutf8}(x, y, ...)
+
+\method{vec_ptype2}{rutf8.character}(x, y, ...)
+
+\method{vec_ptype2}{character.rutf8}(x, y, ...)
+
+\method{vec_ptype2}{rutf8.integer}(x, y, ...)
+
+\method{vec_ptype2}{integer.rutf8}(x, y, ...)
+
+\method{vec_ptype2}{rutf8.double}(x, y, ...)
+
+\method{vec_ptype2}{double.rutf8}(x, y, ...)
+
+\method{vec_cast}{rutf8.rutf8}(x, to, ...)
+
+\method{vec_cast}{rutf8.character}(x, to, ...)
+
+\method{vec_cast}{character.rutf8}(x, to, ...)
+
+\method{vec_cast}{rutf8.integer}(x, to, ...)
+
+\method{vec_cast}{integer.rutf8}(x, to, ...)
+
+\method{vec_cast}{rutf8.double}(x, to, ...)
 }
 \arguments{
 \item{x}{A numeric vector.}
 }
 \value{
 An S3 vector of class `rint32`.
+
+An S3 vector of class `float32`.
+
+An S3 vector of class `rutf8`.
 }
 \description{
-This creates an integer vector that with the equivalent arrow type (`int32`)
+This creates an integer vector that includes the equivalent arrow type (`int32`)
+as attribute.
+
+This creates a double vector that includes the equivalent arrow type (`float64`)
+as attribute.
+
+This creates a character vector that includes the equivalent arrow type (`utf8`)
 as attribute.
 }
 \examples{
 x <- rint32(1:10)
+x
+attributes(x)
+x <- rfloat64(1:10)
+x
+attributes(x)
+x <- rutf8(1:10)
 x
 attributes(x)
 }
